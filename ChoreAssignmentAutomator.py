@@ -18,15 +18,15 @@ with open("members.csv") as mem_file:
 	for line in mem_file:
 		members.append(line.strip().split(','))
 
-fin = open("/Users/saullyb/Google Drive/Code/SPEHouseMgr/%s.txt" % date, 'w') 
+fin = open("File path" % date, 'w') 
 
 #Shuffle the chores
 random.shuffle(chores)
 
 #Setup email 
-sender = "spehousemanagment@gmail.com"
-password = "oneone1!"
-server = smtplib.SMTP('smtp.gmail.com:587')
+sender = "username@provider.com"
+password = "password"
+server = smtplib.SMTP('SMTP server address')
 server.ehlo()
 server.starttls()
 server.login(sender,password)
@@ -41,7 +41,7 @@ table.align['Chore'] = 'l'
 for name in members:
 	table.add_row([name[0], name[1], chores[index], u"\u2610"])
 	print name[2]
-	message = "Your chore for this week is to %s Chores are due Sunday at 10PM. \nSigEp House Managment" %chores[index]
+	message = "Your chore for this week is to %s Chores are due Sunday at 10PM. \n" %chores[index]
 	print message
 	server.sendmail(sender, name[2], message)
 	print "Successfully sent email"
